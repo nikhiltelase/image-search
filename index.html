@@ -1,0 +1,36 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Images</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .image{
+            height: 50vh;
+            width: 30vw;
+            text-align: center;
+            display: inline-block;
+            margin: 10px;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <main class="w-full h-screen">
+        <form id="form" class="pt-20 text-center">
+            <input id="keyword" class="outline-none rounded-lg bg-white p-3 shadow-lg w-80 md:w-96" type="text" placeholder="Search Images..">
+            <button class="shadow-lg rounded-lg bg-blue-500 text-white p-3 px-6 ml-3 hover:bg-blue-600 transition duration-300" type="submit">Search</button>
+        </form>
+        <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="imageContainer">
+
+        </div>
+       <div class="text-center">
+        <button id="loadmore" class="shadow-lg bg-blue-500 text-white p-3 px-6 rounded-lg hover:bg-blue-600 transition duration-300">load more</button>
+       </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
