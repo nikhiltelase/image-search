@@ -9,41 +9,41 @@
 </head>
 <body class="bg-gray-100">
     <main class="w-full min-h-screen">
-        <form id="form" class="pt-10 flex justify-center items-center">
-            <input id="searchInput" class="outline-none rounded-lg bg-white p-3 shadow-lg w-80 md:w-96" type="text" placeholder="wallpaper, nature, computer" autofocus>
-            <button class="shadow-lg search-button rounded-lg bg-blue-500 text-white p-3 px-6 ml-3 hover:bg-blue-600 transition duration-300" type="submit">Search</button>
+        <form id="form" class="pt-10 flex flex-col md:flex-row justify-center items-center mx-4">
+            <input id="searchInput" class="outline-none rounded-lg bg-white p-3 shadow-lg w-full md:w-80 lg:w-96 mb-4 md:mb-0" type="text" placeholder="wallpaper, nature, computer" autofocus>
+            <button class="shadow-lg search-button rounded-lg bg-blue-500 text-white p-3 px-6 ml-0 md:ml-3 hover:bg-blue-600 transition duration-300" type="submit">Search</button>
             <!-- loader -->
             <div id="searchLoader" class="inline-block ms-3" style="display: none;">
-                <svg viewBox="25 25 50 50">
+                <svg viewBox="25 25 50 50" class="w-6 h-6">
                     <circle r="20" cy="50" cx="50"></circle>
-                  </svg>
+                </svg>
             </div>
         </form>
 
-        <div class="text-center mt-5 suggestions">
-            <button class="bg-slate-300 rounded-3xl px-3 text-blue-500 text-xl">Wallpapers</button>
-            <button class="bg-slate-300 rounded-3xl px-3 text-blue-500 text-xl">Nature</button>
-            <button class="bg-slate-300 rounded-3xl px-3 text-blue-500 text-xl">Traval</button>
-            <button class="bg-slate-300 rounded-3xl px-3 text-blue-500 text-xl">Technology</button>
-            <button class="bg-slate-300 rounded-3xl px-3 text-blue-500 text-xl">Sport</button>
-            <button class="bg-slate-300 rounded-3xl px-3 text-blue-500 text-xl">Film</button>
+        <div class="text-center mt-5 suggestions flex flex-wrap justify-center gap-2">
+            <button class="bg-slate-300 rounded-3xl px-3 py-1 text-blue-500 text-sm md:text-xl">Wallpapers</button>
+            <button class="bg-slate-300 rounded-3xl px-3 py-1 text-blue-500 text-sm md:text-xl">Nature</button>
+            <button class="bg-slate-300 rounded-3xl px-3 py-1 text-blue-500 text-sm md:text-xl">Travel</button>
+            <button class="bg-slate-300 rounded-3xl px-3 py-1 text-blue-500 text-sm md:text-xl">Technology</button>
+            <button class="bg-slate-300 rounded-3xl px-3 py-1 text-blue-500 text-sm md:text-xl">Sport</button>
+            <button class="bg-slate-300 rounded-3xl px-3 py-1 text-blue-500 text-sm md:text-xl">Film</button>
         </div>
 
-        <div class="mt-10 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="allImageContainer">
+        <div class="mt-10 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-6 px-4" id="allImageContainer">
             <!-- add img element dynamiclly -->
           
         </div>
 
         <!-- error -->
-        <p id="showError" class="text-center"></p>
+        <p id="showError" class="text-center text-red-500 mt-4"></p>
 
         <div class="flex justify-center items-center mt-6">
             <button id="loadmore" class="shadow-lg bg-blue-500 text-white p-3 px-6 rounded-lg hover:bg-blue-600 transition duration-300">Load More</button>
             <!-- loader -->
             <div id="moreLoader" class="inline-block ms-3" style="display: none;">
-                <svg viewBox="25 25 50 50">
+                <svg viewBox="25 25 50 50" class="w-6 h-6">
                     <circle r="20" cy="50" cx="50"></circle>
-                  </svg>
+                </svg>
             </div>
         </div>
     </main>
