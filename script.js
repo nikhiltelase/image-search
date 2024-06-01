@@ -5,17 +5,16 @@ var allImageContainer = document.getElementById("allImageContainer");
 var searchLoader = document.getElementById("searchLoader");
 var moreLoader = document.getElementById("moreLoader");
 var showError = document.getElementById("showError");
-
+var suggestionsList = document.querySelectorAll(".suggestions button")
 
 const clientId = "LfJX1YXR2ivnAyUARlX41CGwfwtueJ1L2oXzKXiPK0U"
 
 var pages = 1;
 var query ;
 
+
 //get images from upsplash.com using api call
 async function getImages() {
-    query = searchInput.value;
-
     if (query.length == 0){
         showError.innerText = "Enter a input for search images"
         //loader
@@ -24,6 +23,7 @@ async function getImages() {
     }else{
         try {
             let response = await fetch(`https://api.unsplash.com/search/photos?page=${pages}&query=${query}&client_id=${clientId}&per_page=10`);
+            console.log(response);
             let allData = await response.json();
             let result = allData.results;
             // not found error
@@ -35,12 +35,12 @@ async function getImages() {
 
                 let imgDiv = document.createElement("div");
                 imgDiv.classList.add("image-container");
-    
+
                 let img = document.createElement("img");
                 img.classList.add("image");
                 img.src = imageData.urls.small;
                 imgDiv.appendChild(img);
-    
+
                 let downloadBtn = document.createElement("button");
                 downloadBtn.classList.add("download-btn");
                 downloadBtn.innerHTML = `<img src="download-2-line.png">`;
@@ -77,12 +77,8 @@ async function getImages() {
             //loader
             searchLoader.style.display = "none";
             moreLoader.style.display = "none";
-        }
+        } 
     }
-
-    
-    
-
 }
 
 // download image 
@@ -124,17 +120,32 @@ function copyImageUrl(imageUrl){
 form.addEventListener("submit", (e) => {
     e.preventDefault();
     searchLoader.style.display = "block";
-
     allImageContainer.innerHTML = "";
     showError.innerHTML = "";
-
     pages = 1;  // Reset pages to 1 when a new search is submitted
-    getImages();
+    query = searchInput.value;
+    getImages()    
 });
+
+// search by suggentions
+suggestionsList.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+        let buttonTxt = e.target.innerText;
+        query = buttonTxt;
+
+        searchLoader.style.display = "block";
+        allImageContainer.innerHTML = "";
+        showError.innerHTML = "";
+        pages = 1;  // Reset pages to 1 when a new search is submitted
+        getImages()
+    })
+})
 
 //load more images
 loadMore.addEventListener("click", () => {
     pages++;
     moreLoader.style.display = "block"
-    getImages();
+
+    getImages()
 });
+
