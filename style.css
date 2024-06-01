@@ -6,6 +6,12 @@
     margin: 2%;
     object-fit: cover;
 }
+.copy-btn{
+    margin-left: 5%;
+}
+.copy-btn:hover{
+    
+}
 /* loader */
 svg {
     width: 2.5em;

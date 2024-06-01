@@ -1,5 +1,5 @@
 var form = document.getElementById("form");
-var keyword = document.getElementById("keyword");
+var searchInput = document.getElementById("searchInput");
 var loadMore = document.getElementById("loadmore");
 var allImageContainer = document.getElementById("allImageContainer");
 var searchLoader = document.getElementById("searchLoader");
@@ -14,8 +14,8 @@ var query ;
 
 //get images from upsplash.com using api call
 async function getImages() {
-    query = keyword.value;
-    console.log(query.length)
+    query = searchInput.value;
+
     if (query.length == 0){
         showError.innerText = "Enter a input for search images"
         //loader
@@ -24,19 +24,15 @@ async function getImages() {
     }else{
         try {
             let response = await fetch(`https://api.unsplash.com/search/photos?page=${pages}&query=${query}&client_id=${clientId}&per_page=10`);
-            console.log(response);
             let allData = await response.json();
             let result = allData.results;
             // not found error
-            console.log(result.length)
             if (result.length == 0){
-                console.log("no found");
                 showError.innerText = "Image Not Found";
-    
             }
             
             result.forEach((imageData) => {
-                console.log(imageData);
+
                 let imgDiv = document.createElement("div");
                 imgDiv.classList.add("image-container");
     
@@ -47,16 +43,35 @@ async function getImages() {
     
                 let downloadBtn = document.createElement("button");
                 downloadBtn.classList.add("download-btn");
-                downloadBtn.innerHTML = `<img src="download-2-line.png" alt="">`;
+                downloadBtn.innerHTML = `<img src="download-2-line.png">`;
                 downloadBtn.addEventListener("click", () => {
-                    downloadImage(imageData.urls.full, imageData.id);
+                    downloadBtn.innerHTML = "Downloding"
+                    let downloadSucees = downloadImage(imageData.urls.full, imageData.id);
+                    if (downloadSucees){
+                        downloadBtn.innerHTML = "Downloaded";
+                    }else{
+                        downloadBtn.innerHTML = "Error"
+                    }
+                    
                 });
                 imgDiv.appendChild(downloadBtn);
-    
+
+                let copyBtn = document.createElement("button");
+                copyBtn.classList.add("copy-btn");
+                copyBtn.innerHTML = `<img src="icons8-copy-24.png">`;
+                copyBtn.addEventListener("click", () => {
+                    copyBtn.innerHTML = "copied"
+                    setTimeout(() => {
+                        copyBtn.innerHTML = `<img src="icons8-copy-24.png">`;
+                    }, 3000);
+
+                    copyImageUrl(imageData.urls.full)
+                })
+                imgDiv.appendChild(copyBtn);
+
                 allImageContainer.appendChild(imgDiv);
             });
         } catch (error) {
-            console.log(error)
             showError.innerText = "Error: Check your network or Reconnecting to Wi-Fi";
         } finally{
             //loader
@@ -71,17 +86,38 @@ async function getImages() {
 }
 
 // download image 
-function downloadImage(url, id) {
-    fetch(url)
-        .then(response => response.blob())
-        .then(blob => {
-            let a = document.createElement('a');
-            a.href = URL.createObjectURL(blob);
-            a.download = `${id}.jpg`;
-            a.click();
-            URL.revokeObjectURL(a.href);
-        })
-        .catch(error => console.error('Error downloading the image:', error));
+async function downloadImage(url, id) {
+    try {
+        let response = await fetch(url);
+        let blob = await response.blob();
+        let a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = `${id}.jpg`;
+        a.click();
+        URL.revokeObjectURL(a.href);
+        return true;
+    } catch (error) {
+        return false;
+    }
+}
+
+// copy image usl 
+function copyImageUrl(imageUrl){
+     // Create a temporary textarea element to hold the URL
+     var tempInput = document.createElement('textarea');
+     tempInput.value = imageUrl;
+     document.body.appendChild(tempInput);
+
+     // Select the text in the textarea
+     tempInput.select();
+     tempInput.setSelectionRange(0, 99999); // For mobile devices
+
+     // Copy the text to the clipboard
+     document.execCommand('copy');
+
+     // Remove the temporary textarea element
+     document.body.removeChild(tempInput);
+     console.log("copied")
 }
 
 //form submit event
