@@ -10,10 +10,12 @@ body{
     display: inline-block;
     margin: 2%;
     object-fit: cover;
+    border-radius: 10px;
 }
 .copy-btn{
     margin-left: 5%;
 }
+
 /* loader */
 svg {
     width: 2.5em;
@@ -66,5 +68,11 @@ svg {
     }
     .search-button{
         margin-top: 10px;
+    }
+    .suggestions button{
+    margin-top: 5px;
+    }
+    #form{
+        flex-direction: column;
     }
 }

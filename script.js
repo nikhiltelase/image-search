@@ -153,3 +153,6 @@ loadMore.addEventListener("click", () => {
     getImages()
 });
 
+//home page images
+searchInput.value = "popular";
+getImages();
