@@ -125,7 +125,9 @@ function searchImages() {
     allImageContainer.innerHTML = "";
     showError.innerHTML = "";
     pages = 1;  // Reset pages to 1 when a new search is submitted
-    getImages()    
+    setTimeout(() => {
+        getImages()    
+    }, 1000);
 }
 
 //search on form submit 
@@ -150,7 +152,9 @@ loadMore.addEventListener("click", () => {
     pages++;
     moreLoader.style.display = "block"
     console.log(query)
-    getImages()
+    setTimeout(() => {
+        getImages()    
+    }, 1000);
 });
 
 //home page images
