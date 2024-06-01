@@ -9,6 +9,7 @@ body{
     margin: 2%;
     object-fit: cover;
     border-radius: 10px;
+    cursor: pointer;
 }
 .copy-btn{
     margin-left: 5%;
