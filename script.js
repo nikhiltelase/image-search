@@ -10,11 +10,13 @@ var suggestionsList = document.querySelectorAll(".suggestions button")
 const clientId = "LfJX1YXR2ivnAyUARlX41CGwfwtueJ1L2oXzKXiPK0U"
 
 var pages = 1;
-var query ;
+var query = "";
 
 
 //get images from upsplash.com using api call
 async function getImages() {
+    query = searchInput.value;
+
     if (query.length == 0){
         showError.innerText = "Enter a input for search images"
         //loader
@@ -22,8 +24,9 @@ async function getImages() {
         moreLoader.style.display = "none";
     }else{
         try {
-            let response = await fetch(`https://api.unsplash.com/search/photos?page=${pages}&query=${query}&client_id=${clientId}&per_page=10`);
+            let response = await fetch(`https://api.unsplash.com/search/photos?page=${pages}&query=${query}&client_id=${clientId}&per_page=12`);
             console.log(response);
+            console.log(pages)
             let allData = await response.json();
             let result = allData.results;
             // not found error
@@ -116,28 +119,29 @@ function copyImageUrl(imageUrl){
      console.log("copied")
 }
 
-//form submit event
-form.addEventListener("submit", (e) => {
-    e.preventDefault();
+//get new image by search input
+function searchImages() {
     searchLoader.style.display = "block";
     allImageContainer.innerHTML = "";
     showError.innerHTML = "";
     pages = 1;  // Reset pages to 1 when a new search is submitted
-    query = searchInput.value;
     getImages()    
-});
+}
 
+//search on form submit 
+form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    searchImages();
+
+
+})
 // search by suggentions
 suggestionsList.forEach((btn) => {
     btn.addEventListener("click", (e) => {
         let buttonTxt = e.target.innerText;
-        query = buttonTxt;
+        searchInput.value = buttonTxt;   
+        searchImages();
 
-        searchLoader.style.display = "block";
-        allImageContainer.innerHTML = "";
-        showError.innerHTML = "";
-        pages = 1;  // Reset pages to 1 when a new search is submitted
-        getImages()
     })
 })
 
@@ -145,7 +149,7 @@ suggestionsList.forEach((btn) => {
 loadMore.addEventListener("click", () => {
     pages++;
     moreLoader.style.display = "block"
-
+    console.log(query)
     getImages()
 });
 
