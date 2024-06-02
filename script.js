@@ -63,7 +63,7 @@ async function getImages() {
             downloadBtn.innerHTML = `<img src="download-2-line.png">`;
             downloadBtn.addEventListener("click", async () => {
                 downloadBtn.innerHTML = "Downloading...";
-                const downloadSuccess = await downloadImage(imageData.urls.full, imageData.id);
+                const downloadSuccess = await downloadImage(imageData.urls.raw, imageData.id);
                 downloadBtn.innerHTML = downloadSuccess ? "Downloaded" : "Error";
             });
             imgDiv.appendChild(downloadBtn);
