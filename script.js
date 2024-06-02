@@ -5,7 +5,18 @@ var allImageContainer = document.getElementById("allImageContainer");
 var searchLoader = document.getElementById("searchLoader");
 var moreLoader = document.getElementById("moreLoader");
 var showError = document.getElementById("showError");
-var suggestionsList = document.querySelectorAll(".suggestions button")
+var suggestionsList = document.querySelectorAll(".suggestions button");
+
+//handling big image
+var bigImage = document.getElementById("bigImage");
+var bigImageContainer = document.getElementById("bigImageContainer");
+var cancelBigImage = document.getElementById("cancel");
+cancelBigImage.addEventListener("click", () => {
+    bigImageContainer.style.display = "none";
+})
+bigImage.addEventListener("click", () => {
+    bigImageContainer.style.display = "none";
+})
 
 const clientId = "LfJX1YXR2ivnAyUARlX41CGwfwtueJ1L2oXzKXiPK0U"
 
@@ -25,8 +36,6 @@ async function getImages() {
     }else{
         try {
             let response = await fetch(`https://api.unsplash.com/search/photos?page=${pages}&query=${query}&client_id=${clientId}&per_page=12`);
-            console.log(response);
-            console.log(pages)
             let allData = await response.json();
             let result = allData.results;
             // not found error
@@ -35,15 +44,24 @@ async function getImages() {
             }
             
             result.forEach((imageData) => {
+                // console.log(imageData.urls)
 
+                //create a div they contain img, dowload-btn, copy-btn 
                 let imgDiv = document.createElement("div");
                 imgDiv.classList.add("image-container");
 
+                //img-tag create and add eventListener
                 let img = document.createElement("img");
                 img.classList.add("image");
-                img.src = imageData.urls.small;
+                img.src = imageData.urls.small ;
+                img.addEventListener("click", () => {
+                    bigImage.src = imageData.urls.full ;
+                    bigImageContainer.style.display = "flex";
+                    
+                })
                 imgDiv.appendChild(img);
 
+                //download button create and add eventListener
                 let downloadBtn = document.createElement("button");
                 downloadBtn.classList.add("download-btn");
                 downloadBtn.innerHTML = `<img src="download-2-line.png">`;
@@ -54,11 +72,11 @@ async function getImages() {
                         downloadBtn.innerHTML = "Downloaded";
                     }else{
                         downloadBtn.innerHTML = "Error"
-                    }
-                    
+                    }     
                 });
                 imgDiv.appendChild(downloadBtn);
 
+                  //copy button create and add eventListener
                 let copyBtn = document.createElement("button");
                 copyBtn.classList.add("copy-btn");
                 copyBtn.innerHTML = `<img src="icons8-copy-24.png">`;
@@ -72,6 +90,7 @@ async function getImages() {
                 })
                 imgDiv.appendChild(copyBtn);
 
+                // add img-div into image container
                 allImageContainer.appendChild(imgDiv);
             });
         } catch (error) {
@@ -116,7 +135,6 @@ function copyImageUrl(imageUrl){
 
      // Remove the temporary textarea element
      document.body.removeChild(tempInput);
-     console.log("copied")
 }
 
 //get new image by search input
@@ -149,11 +167,10 @@ suggestionsList.forEach((btn) => {
 loadMore.addEventListener("click", () => {
     pages++;
     moreLoader.style.display = "block"
-    console.log(query)
     getImages()    
 });
 
-//home page images
+// home page images
 searchInput.value = "popular";
 getImages();
 

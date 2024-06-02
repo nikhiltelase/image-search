@@ -17,9 +17,9 @@ body {
     }
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.image-container:hover {
+/* .image-container:hover {
     transform: scale(1.05);
-}
+} */
 
 .copy-btn {
     margin-left: 5%;
@@ -34,6 +34,38 @@ body {
     transition-duration: 500ms;
 
 }
+
+
+/* show big image */
+#bigImageContainer {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(4, 4, 4, 0.8); /* Adding some transparency */
+    display: none; /* Initially hidden */
+    justify-content: center;
+    align-items: center;
+}
+#cancel{
+    position: absolute;
+    top: 5%;
+    right: 10%;
+    font-size: xx-large;
+    color: red;
+}
+#bigImage {
+    width: auto;
+    height: 90vh;
+}
+  /* mobile */
+  @media screen and (max-width: 500px) {
+    #bigImage {
+        height: auto;
+    }
+  }
 /* auto scroll button */
 html {
     scroll-behavior: smooth;
