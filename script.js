@@ -162,11 +162,12 @@ getImages();
 // AUTO SCROLL JAVASCRIPT
 /* script.js */
 let goTopBtn = document.getElementById("goTopBtn");
+var main = document.getElementById("main");
 let lastScrollTop = 0;
 
 // When the user scrolls up, show the button
 window.onscroll = function() {
-    let st = window.pageYOffset || document.documentElement.scrollTop;
+    let st = window.scrollY || document.documentElement.scrollTop;
     if (st < lastScrollTop) {
         goTopBtn.style.display = "block";
     } else {
@@ -180,3 +181,4 @@ goTopBtn.onclick = function() {
     document.body.scrollTop = 0; // For Safari
     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE, and Opera
 };
+
