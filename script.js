@@ -156,3 +156,27 @@ loadMore.addEventListener("click", () => {
 //home page images
 searchInput.value = "popular";
 getImages();
+
+
+
+// AUTO SCROLL JAVASCRIPT
+/* script.js */
+let goTopBtn = document.getElementById("goTopBtn");
+let lastScrollTop = 0;
+
+// When the user scrolls up, show the button
+window.onscroll = function() {
+    let st = window.pageYOffset || document.documentElement.scrollTop;
+    if (st < lastScrollTop) {
+        goTopBtn.style.display = "block";
+    } else {
+        goTopBtn.style.display = "none";
+    }
+    lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
+};
+
+// When the user clicks on the button, scroll to the top of the document
+goTopBtn.onclick = function() {
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE, and Opera
+};
