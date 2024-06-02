@@ -35,6 +35,9 @@ body {
 
 }
 /* auto scroll button */
+html {
+    scroll-behavior: smooth;
+}
 #goTopBtn {
     display: none; 
     position: fixed; 

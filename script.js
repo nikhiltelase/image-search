@@ -162,7 +162,6 @@ getImages();
 // AUTO SCROLL JAVASCRIPT
 /* script.js */
 let goTopBtn = document.getElementById("goTopBtn");
-var main = document.getElementById("main");
 let lastScrollTop = 0;
 
 // When the user scrolls up, show the button
@@ -178,7 +177,9 @@ window.onscroll = function() {
 
 // When the user clicks on the button, scroll to the top of the document
 goTopBtn.onclick = function() {
-    document.body.scrollTop = 0; // For Safari
-    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE, and Opera
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
 };
 
