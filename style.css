@@ -9,32 +9,26 @@ body {
     object-fit: cover;
     border-radius: 10px;
     cursor: pointer;
-    
 }
-.image-container{
-    button{
-        margin-top: 5px;
-    }
+
+.image-container {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-top: 10px;
 }
-/* .image-container:hover {
-    transform: scale(1.05);
-} */
+
+.image-container button {
+    margin-top: 5px;
+}
 
 .copy-btn {
     margin-left: 5%;
 }
-.download-btn:hover{
+
+.download-btn:hover,
+.copy-btn:hover {
     transform: scale(1.3);
     transition-duration: 500ms;
-
 }
-.copy-btn:hover{
-    transform: scale(1.3);
-    transition-duration: 500ms;
-
-}
-
 
 /* show big image */
 #bigImageContainer {
@@ -44,45 +38,50 @@ body {
     transform: translate(-50%, -50%);
     width: 100%;
     height: 100vh;
-    background-color: rgba(4, 4, 4, 0.8); /* Adding some transparency */
-    display: none; /* Initially hidden */
+    background-color: rgba(4, 4, 4, 0.8);
+    display: none;
     justify-content: center;
     align-items: center;
 }
-#cancel{
+
+#cancel {
     position: absolute;
     top: 5%;
     right: 10%;
     font-size: xx-large;
     color: red;
 }
+
 #bigImage {
     width: auto;
     height: 90vh;
 }
-  /* mobile */
-  @media screen and (max-width: 500px) {
+
+/* mobile */
+@media screen and (max-width: 500px) {
     #bigImage {
         height: auto;
     }
-  }
+}
+
 /* auto scroll button */
 html {
     scroll-behavior: smooth;
 }
+
 #goTopBtn {
-    display: none; 
-    position: fixed; 
-    bottom: 20px; 
-    right: 30px; 
-    z-index: 99; 
-    border: none; 
-    outline: none; 
-    background-color:transparent; 
-    color: white; 
-    cursor: pointer; 
-    padding: 15px; 
-    border-radius: 10px; 
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 10px;
     font-size: 2rem;
 }
 
@@ -91,9 +90,9 @@ svg {
     width: 2.5em;
     transform-origin: center;
     animation: rotate4 2s linear infinite;
-   }
-   
-   circle {
+}
+
+circle {
     fill: none;
     stroke: hsl(214, 97%, 59%);
     stroke-width: 4;
@@ -101,27 +100,26 @@ svg {
     stroke-dashoffset: 0;
     stroke-linecap: round;
     animation: dash4 1.5s ease-in-out infinite;
-   }
-   
-   @keyframes rotate4 {
+}
+
+@keyframes rotate4 {
     100% {
-     transform: rotate(360deg);
+        transform: rotate(360deg);
     }
-   }
-   
-   @keyframes dash4 {
+}
+
+@keyframes dash4 {
     0% {
-     stroke-dasharray: 1, 200;
-     stroke-dashoffset: 0;
+        stroke-dasharray: 1, 200;
+        stroke-dashoffset: 0;
     }
-   
+
     50% {
-     stroke-dasharray: 90, 200;
-     stroke-dashoffset: -35px;
+        stroke-dasharray: 90, 200;
+        stroke-dashoffset: -35px;
     }
-   
+
     100% {
-     stroke-dashoffset: -125px;
+        stroke-dashoffset: -125px;
     }
-   }
-   
+}
