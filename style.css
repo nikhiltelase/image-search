@@ -52,9 +52,15 @@ body {
     color: red;
 }
 
+#cancel:hover{
+    background-color: rgba(0, 0, 0, 0.629);
+    border-radius: 5px;
+    transition-duration: 300ms;
+}
 #bigImage {
     width: auto;
     height: 90vh;
+    transition: dura;
 }
 
 /* mobile */
