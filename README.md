@@ -4,6 +4,17 @@
 
 This project is an interactive image search website that leverages the Unsplash API to fetch and display high-quality images. Users can search for images using keywords, download images, copy image URLs, and get quick search suggestions. The website also loads popular images by default and includes loaders and error handling for an enhanced user experience.
 
+## Video
+[![Video Thumbnail](https://img.youtube.com/vi/9dNviHbtqCU/hqdefault.jpg)](https://www.youtube.com/watch?v=9dNviHbtqCU)
+
+Click the image to watch the video.
+## LinkedIn Post
+[View the LinkedIn post here](https://www.linkedin.com/feed/update/urn:li:activity:7202627733875531776/)
+
+## Live Demo
+You can view the live version of the project at the following link:
+[Live Demo](https://unsplash-images-search-nikhiltelase17.netlify.app/)
+
 ## Features
 
 - **Image Search**: Search for images using keywords such as "wallpapers," "nature," "technology," etc.
