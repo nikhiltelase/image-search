@@ -1,82 +1,200 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Search Images</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="style.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-</head>
-<body class="bg-gray-100">
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-100">
     <main class="w-full min-h-screen relative" id="main">
-        <form id="form" class="pt-10 flex flex-col md:flex-row justify-center items-center mx-4 fade-in">
-            <input id="searchInput" class="outline-none rounded-lg bg-white p-3 shadow-lg w-full md:w-80 lg:w-96 mb-4 md:mb-0  hover:scale-105 hover:duration-700" type="text" placeholder="wallpaper, nature, computer" autofocus>
-            <button class="shadow-lg search-button rounded-lg bg-blue-500 text-white p-3 px-6 ml-0 md:ml-3 hover:bg-blue-600 hover:scale-105 hover:shadow-2xl hover:duration-700" type="submit">Search</button>
-            <!-- loader -->
-            <div id="searchLoader" class="inline-block ms-3" style="display: none;">
-                <svg viewBox="25 25 50 50" class="w-6 h-6">
-                    <circle r="20" cy="50" cx="50"></circle>
-                </svg>
-            </div>
-        </form>
-
-        <div class="text-center mt-5 suggestions flex flex-wrap justify-center gap-2 fade-in">
-            <button class="bg-slate-300 rounded-3xl px-3 py-1 text-blue-500 text-sm md:text-xl hover:text-white hover:bg-blue-500  hover:duration-700">Wallpapers</button>
-            <button class="bg-slate-300 rounded-3xl px-3 py-1 text-blue-500 text-sm md:text-xl  hover:text-white hover:bg-blue-500  hover:duration-700">Nature</button>
-            <button class="bg-slate-300 rounded-3xl px-3 py-1 text-blue-500 text-sm md:text-xl  hover:text-white hover:bg-blue-500  hover:duration-700">Animals</button>
-            <button class="bg-slate-300 rounded-3xl px-3 py-1 text-blue-500 text-sm md:text-xl  hover:text-white hover:bg-blue-500  hover:duration-700">Travel</button>
-            <button class="bg-slate-300 rounded-3xl px-3 py-1 text-blue-500 text-sm md:text-xl  hover:text-white hover:bg-blue-500  hover:duration-700">Technology</button>
-            <button class="bg-slate-300 rounded-3xl px-3 py-1 text-blue-500 text-sm md:text-xl  hover:text-white hover:bg-blue-500  hover:duration-700">Sport</button>
-            <button class="bg-slate-300 rounded-3xl px-3 py-1 text-blue-500 text-sm md:text-xl  hover:text-white hover:bg-blue-500  hover:duration-700">Film</button>
-            <button class="bg-slate-300 rounded-3xl px-3 py-1 text-blue-500 text-sm md:text-xl  hover:text-white hover:bg-blue-500  hover:duration-700">Motivational </button>
-            <button class="bg-slate-300 rounded-3xl px-3 py-1 text-blue-500 text-sm md:text-xl  hover:text-white hover:bg-blue-500  hover:duration-700">Business</button>
-            <button class="bg-slate-300 rounded-3xl px-3 py-1 text-blue-500 text-sm md:text-xl  hover:text-white hover:bg-blue-500  hover:duration-700">Art</button>
-            <button class="bg-slate-300 rounded-3xl px-3 py-1 text-blue-500 text-sm md:text-xl  hover:text-white hover:bg-blue-500  hover:duration-700">Historical</button>
-            <button class="bg-slate-300 rounded-3xl px-3 py-1 text-blue-500 text-sm md:text-xl  hover:text-white hover:bg-blue-500  hover:duration-700">Vehicles</button>
-            <button class="bg-slate-300 rounded-3xl px-3 py-1 text-blue-500 text-sm md:text-xl  hover:text-white hover:bg-blue-500  hover:duration-700">Street</button>
-            <button class="bg-slate-300 rounded-3xl px-3 py-1 text-blue-500 text-sm md:text-xl  hover:text-white hover:bg-blue-500  hover:duration-700">Cities</button>
-            <button class="bg-slate-300 rounded-3xl px-3 py-1 text-blue-500 text-sm md:text-xl  hover:text-white hover:bg-blue-500  hover:duration-700">Underwater</button>
-            <button class="bg-slate-300 rounded-3xl px-3 py-1 text-blue-500 text-sm md:text-xl  hover:text-white hover:bg-blue-500  hover:duration-700">Music</button>
-            <button class="bg-slate-300 rounded-3xl px-3 py-1 text-blue-500 text-sm md:text-xl  hover:text-white hover:bg-blue-500  hover:duration-700">Landscapes</button>
-            <button class="bg-slate-300 rounded-3xl px-3 py-1 text-blue-500 text-sm md:text-xl  hover:text-white hover:bg-blue-500  hover:duration-700">indian</button>
-            <button class="bg-slate-300 rounded-3xl px-3 py-1 text-blue-500 text-sm md:text-xl  hover:text-white hover:bg-blue-500  hover:duration-700">Hindu Gods</button>
-            <button class="bg-slate-300 rounded-3xl px-3 py-1 text-blue-500 text-sm md:text-xl  hover:text-white hover:bg-blue-500  hover:duration-700">Hinduism</button>
-            <button class="bg-slate-300 rounded-3xl px-3 py-1 text-blue-500 text-sm md:text-xl  hover:text-white hover:bg-blue-500  hover:duration-700">Yoga</button>
-            <button class="bg-slate-300 rounded-3xl px-3 py-1 text-blue-500 text-sm md:text-xl  hover:text-white hover:bg-blue-500  hover:duration-700">Spirituality</button>
-            <button class="bg-slate-300 rounded-3xl px-3 py-1 text-blue-500 text-sm md:text-xl  hover:text-white hover:bg-blue-500  hover:duration-700">Ayurveda</button>
+      <form
+        id="form"
+        class="pt-10 flex flex-col md:flex-row justify-center items-center mx-4 fade-in"
+      >
+        <input
+          id="searchInput"
+          class="outline-none rounded-lg bg-white p-3 shadow-lg w-full md:w-80 lg:w-96 mb-4 md:mb-0 hover:scale-105 hover:duration-700"
+          type="text"
+          placeholder="wallpaper, nature, computer"
+          autofocus
+        />
+        <button
+          class="shadow-lg search-button rounded-lg bg-blue-500 text-white p-3 px-6 ml-0 md:ml-3 hover:bg-blue-600 hover:scale-105 hover:shadow-2xl hover:duration-700"
+          type="submit"
+        >
+          Search
+        </button>
+        <!-- loader -->
+        <div id="searchLoader" class="inline-block ms-3" style="display: none">
+          <svg viewBox="25 25 50 50" class="w-6 h-6">
+            <circle r="20" cy="50" cx="50"></circle>
+          </svg>
         </div>
+      </form>
 
-        <!-- show big image -->
-        <!-- i add coutom css on this div -->
-        <div id="bigImageContainer">
-            <button id="cancel">❌</button>
-            <img id="bigImage" src="" alt="">
+      <div
+        class="text-center mt-5 suggestions flex flex-wrap justify-center gap-2 fade-in"
+      >
+        <button
+          class="bg-slate-300 rounded-3xl px-3 py-1 text-blue-500 text-sm md:text-xl hover:text-white hover:bg-blue-500 hover:duration-700"
+        >
+          Wallpapers
+        </button>
+        <button
+          class="bg-slate-300 rounded-3xl px-3 py-1 text-blue-500 text-sm md:text-xl hover:text-white hover:bg-blue-500 hover:duration-700"
+        >
+          Nature
+        </button>
+        <button
+          class="bg-slate-300 rounded-3xl px-3 py-1 text-blue-500 text-sm md:text-xl hover:text-white hover:bg-blue-500 hover:duration-700"
+        >
+          Animals
+        </button>
+        <button
+          class="bg-slate-300 rounded-3xl px-3 py-1 text-blue-500 text-sm md:text-xl hover:text-white hover:bg-blue-500 hover:duration-700"
+        >
+          Travel
+        </button>
+        <button
+          class="bg-slate-300 rounded-3xl px-3 py-1 text-blue-500 text-sm md:text-xl hover:text-white hover:bg-blue-500 hover:duration-700"
+        >
+          Technology
+        </button>
+        <button
+          class="bg-slate-300 rounded-3xl px-3 py-1 text-blue-500 text-sm md:text-xl hover:text-white hover:bg-blue-500 hover:duration-700"
+        >
+          Sport
+        </button>
+        <button
+          class="bg-slate-300 rounded-3xl px-3 py-1 text-blue-500 text-sm md:text-xl hover:text-white hover:bg-blue-500 hover:duration-700"
+        >
+          Film
+        </button>
+        <button
+          class="bg-slate-300 rounded-3xl px-3 py-1 text-blue-500 text-sm md:text-xl hover:text-white hover:bg-blue-500 hover:duration-700"
+        >
+          Motivational
+        </button>
+        <button
+          class="bg-slate-300 rounded-3xl px-3 py-1 text-blue-500 text-sm md:text-xl hover:text-white hover:bg-blue-500 hover:duration-700"
+        >
+          Business
+        </button>
+        <button
+          class="bg-slate-300 rounded-3xl px-3 py-1 text-blue-500 text-sm md:text-xl hover:text-white hover:bg-blue-500 hover:duration-700"
+        >
+          Art
+        </button>
+        <button
+          class="bg-slate-300 rounded-3xl px-3 py-1 text-blue-500 text-sm md:text-xl hover:text-white hover:bg-blue-500 hover:duration-700"
+        >
+          Historical
+        </button>
+        <button
+          class="bg-slate-300 rounded-3xl px-3 py-1 text-blue-500 text-sm md:text-xl hover:text-white hover:bg-blue-500 hover:duration-700"
+        >
+          Vehicles
+        </button>
+        <button
+          class="bg-slate-300 rounded-3xl px-3 py-1 text-blue-500 text-sm md:text-xl hover:text-white hover:bg-blue-500 hover:duration-700"
+        >
+          Street
+        </button>
+        <button
+          class="bg-slate-300 rounded-3xl px-3 py-1 text-blue-500 text-sm md:text-xl hover:text-white hover:bg-blue-500 hover:duration-700"
+        >
+          Cities
+        </button>
+        <button
+          class="bg-slate-300 rounded-3xl px-3 py-1 text-blue-500 text-sm md:text-xl hover:text-white hover:bg-blue-500 hover:duration-700"
+        >
+          Underwater
+        </button>
+        <button
+          class="bg-slate-300 rounded-3xl px-3 py-1 text-blue-500 text-sm md:text-xl hover:text-white hover:bg-blue-500 hover:duration-700"
+        >
+          Music
+        </button>
+        <button
+          class="bg-slate-300 rounded-3xl px-3 py-1 text-blue-500 text-sm md:text-xl hover:text-white hover:bg-blue-500 hover:duration-700"
+        >
+          Landscapes
+        </button>
+        <button
+          class="bg-slate-300 rounded-3xl px-3 py-1 text-blue-500 text-sm md:text-xl hover:text-white hover:bg-blue-500 hover:duration-700"
+        >
+          indian
+        </button>
+        <button
+          class="bg-slate-300 rounded-3xl px-3 py-1 text-blue-500 text-sm md:text-xl hover:text-white hover:bg-blue-500 hover:duration-700"
+        >
+          Hindu Gods
+        </button>
+        <button
+          class="bg-slate-300 rounded-3xl px-3 py-1 text-blue-500 text-sm md:text-xl hover:text-white hover:bg-blue-500 hover:duration-700"
+        >
+          Hinduism
+        </button>
+        <button
+          class="bg-slate-300 rounded-3xl px-3 py-1 text-blue-500 text-sm md:text-xl hover:text-white hover:bg-blue-500 hover:duration-700"
+        >
+          Yoga
+        </button>
+        <button
+          class="bg-slate-300 rounded-3xl px-3 py-1 text-blue-500 text-sm md:text-xl hover:text-white hover:bg-blue-500 hover:duration-700"
+        >
+          Spirituality
+        </button>
+        <button
+          class="bg-slate-300 rounded-3xl px-3 py-1 text-blue-500 text-sm md:text-xl hover:text-white hover:bg-blue-500 hover:duration-700"
+        >
+          Ayurveda
+        </button>
+      </div>
+
+      <!-- show big image -->
+      <!-- i add coutom css on this div -->
+      <div id="bigImageContainer">
+        <button id="cancel">❌</button>
+        <img id="bigImage" src="" alt="" />
+      </div>
+
+      <div
+        class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 px-4 fade-in"
+        id="allImageContainer"
+      >
+        <!-- add img element dynamically -->
+      </div>
+
+      <!-- error -->
+      <p id="showError" class="text-center text-red-500 mt-4"></p>
+
+      <!-- autoScroll button -->
+      <button id="goTopBtn">
+        <i class="bx bxs-to-top text-blue-600 shadow-2xl"></i>
+      </button>
+
+      <div class="flex justify-center items-center mt-6 fade-in">
+        <button
+          id="loadmore"
+          class="shadow-lg bg-blue-500 text-white mb-5 p-3 px-6 rounded-lg hover:bg-blue-600 transition duration-300"
+        >
+          Load More
+        </button>
+        <!-- loader -->
+        <div id="moreLoader" class="inline-block ms-3" style="display: none">
+          <svg viewBox="25 25 50 50" class="w-6 h-6">
+            <circle r="20" cy="50" cx="50"></circle>
+          </svg>
         </div>
-
-
-        <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 px-4 fade-in" id="allImageContainer">
-            <!-- add img element dynamically -->
-           
-        </div>
-
-        <!-- error -->
-        <p id="showError" class="text-center text-red-500 mt-4"></p>
-
-
-        <!-- autoScroll button -->
-        <button id="goTopBtn"><i class='bx bxs-to-top text-blue-600 shadow-2xl '></i></button>
-
-        <div class="flex justify-center items-center mt-6 fade-in">
-            <button id="loadmore" class="shadow-lg bg-blue-500 text-white mb-5 p-3 px-6 rounded-lg hover:bg-blue-600 transition duration-300">Load More</button>
-            <!-- loader -->
-            <div id="moreLoader" class="inline-block ms-3" style="display: none;">
-                <svg viewBox="25 25 50 50" class="w-6 h-6">
-                    <circle r="20" cy="50" cx="50"></circle>
-                </svg>
-            </div>
-        </div>
+      </div>
     </main>
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
